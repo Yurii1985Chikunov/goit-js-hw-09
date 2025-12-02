@@ -76,26 +76,18 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 
-// <li class="gallery-item">
-//   <a class="gallery-link" href="large-image.jpg">
-//     <img class="gallery-image" src="small-image.jpg" alt="Image description" />
-//   </a>
-// </li>;
-const galleryList = document.querySelector('.gallery');
-const galleryMarkup = images
+const gallery = document.querySelector('.gallery');
+
+gallery.innerHTML = images
   .map(
     img => `
-<li class="gallery-item">
+     <li class="gallery-item">
   <a class="gallery-link" href="${img.original}">
-    <img
-      class="gallery-image"
-      src="${img.preview}"
-      data-source="${img.original}"
-      alt="${img.description}"
-    />
+    <img class="gallery-image" src="${img.preview}" alt="${img.alt}" />
   </a>
-</li>`
+</li>
+  `
   )
   .join('');
 
-galleryList.insertAdjacentHTML('beforeend', galleryMarkup);
+new SimpleLightbox('.gallery a');
