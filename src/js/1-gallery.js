@@ -64,6 +64,20 @@ const images = [
   },
 ];
 
+const gallery = document.querySelector('.gallery');
+
+gallery.innerHTML = images
+  .map(
+    img => `
+     <li class="gallery-item">
+  <a class="gallery-link" href="${img.original}">
+    <img class="gallery-image" src="${img.preview}" alt="${img.description}" />
+  </a>
+</li>
+  `
+  )
+  .join('');
+
 // Описаний в документації
 import SimpleLightbox from 'simplelightbox';
 // Додатковий імпорт стилів
@@ -75,19 +89,3 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionPosition: 'bottom',
   captionDelay: 250,
 });
-
-const gallery = document.querySelector('.gallery');
-
-gallery.innerHTML = images
-  .map(
-    img => `
-     <li class="gallery-item">
-  <a class="gallery-link" href="${img.original}">
-    <img class="gallery-image" src="${img.preview}" alt="${img.alt}" />
-  </a>
-</li>
-  `
-  )
-  .join('');
-
-new SimpleLightbox('.gallery a');
